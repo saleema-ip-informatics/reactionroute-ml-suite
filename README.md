@@ -35,6 +35,7 @@ Applies Monte Carlo Tree Search with a USPTO-trained neural network policy to de
 - Scaffold family comparison: Quinazoline vs Acrylamide-Pyrimidine series
 - ASKCOS MIT API integration for cross-validation of routes
 - Checkpoint saving per compound — crash-safe on Colab free tier
+![Scaffold Analysis](results/figures/retrosynthesis_scaffold_analysis.png)
 ![Erlotinib Retrosynthesis Route](results/figures/erlotinib_retrosynthesis_route.png)
 
 **Key output:** `results/metrics/retrosynthesis_results.csv` · `results/figures/erlotinib_retrosynthesis_route.png`
