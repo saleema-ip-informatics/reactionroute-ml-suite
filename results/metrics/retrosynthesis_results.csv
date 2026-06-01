@@ -1,0 +1,6 @@
+compound,patent,scaffold,pIC50,routes_found,top_route_steps,key_precursors
+Erlotinib (Tarceva),US5747498,Quinazoline,9.3,11,12,"['CC(=O)O', 'OCCBr', 'C#Cc1cccc(N)c1']"
+Gefitinib (Iressa),EP0566226,Quinazoline,8.9,9,8,"['ClCCCN1CCOCC1', 'Nc1ccc(F)c(Cl)c1', 'COc1cc2c(Cl)ncnc2cc1F']"
+Osimertinib (Tagrisso),WO2013014448,Acrylamide-Pyrimidine,9.1,7,12,"['C=CC(=O)Cl', 'Nc1ccc(F)c(Cl)c1', 'O=P(Cl)(Cl)Cl']"
+Lapatinib (Tykerb),WO9935146,Quinazoline,8.6,6,4,"['Nc1ccc(Cl)cc1', 'O=C(Cl)C(=O)Cl', 'O=c1[nH]cnc2cc(OCC3CCCO3)c(OCC3CCCO3)cc12']"
+Afatinib (Gilotrif),WO2002050043,Acrylamide-Quinazoline,9.0,7,4,"['C=CC(=O)N1CCNCC1', 'COc1cc2ncnc(Cl)c2cc1OC', 'Nc1ccc(Br)c(F)c1']"

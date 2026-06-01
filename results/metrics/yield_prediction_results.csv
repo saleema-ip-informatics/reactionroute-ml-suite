@@ -1,0 +1,4 @@
+Model,R2_LOO,RMSE_LOO
+Random Forest,,9.27
+Gradient Boosting,,9.8
+Ridge Regression,,7.78
