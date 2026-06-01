@@ -1,0 +1,6 @@
+compound,patent,scaffold,MW,LogP,HBD,HBA,TPSA,RotBonds,Rings,Lipinski_pass,quinazoline_core,acrylamide_warhead,aniline_rgroup,fluorine_sub
+Erlotinib (Tarceva),US5747498,c1ccc(Nc2ncnc3ccccc23)cc1,365.39,2.1,3,7,96.73,8,3,True,False,False,True,False
+Gefitinib (Iressa),EP0566226,c1ccc(Nc2ncnc3ccc(OCCCN4CCOCC4)cc23)cc1,446.91,4.28,1,7,68.74,8,4,True,False,False,True,True
+Osimertinib (Tagrisso),WO2013014448,c1ccc(Nc2ncnc3cc(NCc4ccccn4)ccc23)cc1,462.92,5.86,3,6,91.83,7,4,False,False,True,True,True
+Lapatinib (Tykerb),WO9935146,c1ccc(Nc2ncnc3cc(OCC4CCCO4)c(OCC4CCCO4)cc23)cc1,455.94,5.14,1,7,74.73,8,5,False,False,False,True,False
+Afatinib (Gilotrif),WO2002050043,c1ccc2c(Nc3ccc(N4CCNCC4)cc3)ncnc2c1,437.48,3.36,1,7,79.82,6,4,True,False,True,True,True

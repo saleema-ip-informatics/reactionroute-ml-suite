@@ -1,0 +1,11 @@
+reaction_smarts,reaction_type,solvent,temperature,catalyst,yield,patent
+Clc1ncnc2ccccc12.Nc1ccc(C#C)cc1>>C#Cc1ccc(Nc2ncnc3ccccc23)cc1,SNAr_coupling,IPA,80,none,78,US5747498
+C#Cc1ccc(Nc2ncnc3ccccc23)cc1.ClCCOCCO>>C#Cc1ccc(Nc2ncnc3cc(OCCO)c(OCCO)cc23)cc1,O_alkylation,DMF,60,K2CO3,65,US5747498
+COc1cc2ncnc(Cl)c2cc1OCCCN1CCOCC1.Nc1ccc(F)c(Cl)c1>>COc1cc2ncnc(Nc3ccc(F)c(Cl)c3)c2cc1OCCCN1CCOCC1,SNAr_coupling,IPA,85,HCl,72,EP0566226
+C=CC(=O)Cl.Nc1cc2c(Nc3ccc(F)c(Cl)c3)ncnc2cc1NC(C)c1ccccn1>>C=CC(=O)Nc1cc2c(Nc3ccc(F)c(Cl)c3)ncnc2cc1NC(C)c1ccccn1,acylation,DCM,0,TEA,85,WO2013014448
+Brc1cc2c(Cl)ncnc2cc1NC(C)c1ccccn1.Nc1ccc(F)c(Cl)c1>>Clc1ncnc2cc(NC(C)c3ccccn3)cc(Nc3ccc(F)c(Cl)c3)c12,SNAr_coupling,NMP,120,DIPEA,68,WO2013014448
+Clc1ncnc2cc(OC)c(OC)cc12.Nc1ccc(F)c(Cl)c1>>COc1cc2ncnc(Nc3ccc(F)c(Cl)c3)c2cc1OC,SNAr_coupling,IPA,80,none,75,EP0566226
+OCC1CCNCC1.Clc1ccc2ncnc(Nc3ccc(Cl)c(F)c3)c2c1>>OCC1CCN(c2ccc3ncnc(Nc4ccc(Cl)c(F)c4)c3c2)CC1,N_alkylation,DMF,70,K2CO3,62,WO9935146
+CC(=O)Nc1ccc(B(O)O)cc1.Brc1ccc2ncnc(Nc3ccc(F)c(Cl)c3)c2c1>>CC(=O)Nc1ccc(-c2ccc3ncnc(Nc4ccc(F)c(Cl)c4)c3c2)cc1,Suzuki_coupling,DME_water,90,Pd(PPh3)4,70,WO2002050043
+Nc1ccc(F)c(Cl)c1.O=C(Cl)CCl>>O=C(Cl)CNc1ccc(F)c(Cl)c1,acylation,DCM,25,Et3N,88,WO2002050043
+Clc1ncnc2ccccc12.BrCCN(CC)CC>>CCN(CC)CCc1nc2ccccc2cn1,N_alkylation,ACN,60,K2CO3,58,US5747498
