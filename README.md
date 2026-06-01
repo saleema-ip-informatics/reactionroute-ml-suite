@@ -35,7 +35,7 @@ Applies Monte Carlo Tree Search with a USPTO-trained neural network policy to de
 - Scaffold family comparison: Quinazoline vs Acrylamide-Pyrimidine series
 - ASKCOS MIT API integration for cross-validation of routes
 - Checkpoint saving per compound — crash-safe on Colab free tier
-![Scaffold Analysis](results/figures/retrosynthesis_scaffold_analysis.png)
+
 ![Erlotinib Retrosynthesis Route](results/figures/erlotinib_retrosynthesis_route.png)
 
 **Key output:** `results/metrics/retrosynthesis_results.csv` · `results/figures/erlotinib_retrosynthesis_route.png`
@@ -51,6 +51,7 @@ Implements a 3-layer Graph Convolutional Network (GCN) that operates directly on
 - MolecularGCN: GCNConv → BatchNorm → Dropout → Global Mean Pool → MLP
 - 80/20 train-test split · Adam optimiser · StepLR scheduler · 60 epochs
 - Benchmark comparison: GCN vs Morgan FP baselines (SVR, ElasticNet, Ridge, PyTorch NN)
+
 ![GCN Training Results](results/figures/gcn_training_results.png)
 
 **Key output:** `results/metrics/gcn_model.pt` · `results/figures/gcn_training_results.png`
@@ -66,6 +67,7 @@ Builds a character-level SMILES Transformer encoder for pIC50 regression. Multi-
 - SMILESTransformer: Token embedding + positional encoding → 4-head attention (2 layers) → mean pooling → MLP
 - Correct padding mask computed from token ids (pre-embedding)
 - 60-epoch training with LR scheduling · R² and RMSE evaluation
+
 ![Transformer Training Results](results/figures/transformer_training_results.png)
 
 **Key output:** `results/metrics/transformer_model.pt` · `results/figures/transformer_training_results.png`
@@ -82,6 +84,7 @@ Predicts reaction yield and identifies optimal conditions for EGFR inhibitor syn
 - 3 models compared: Random Forest · Gradient Boosting · Ridge Regression
 - Leave-One-Out CV (correct strategy for small pharmaceutical datasets)
 - 4-panel analysis: yield by reaction type, solvent, temperature, and model comparison
+
 ![Reaction Conditions Analysis](results/figures/reaction_conditions_analysis.png)
 
 
