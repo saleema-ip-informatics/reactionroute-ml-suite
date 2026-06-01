@@ -7,7 +7,7 @@
 ![Colab](https://img.shields.io/badge/Run%20on-Colab-yellow?logo=googlecolab)
 
 **Author:** Saleema Begam A — Cheminformatics Scientist 
-
+**Domain:** Computational Retrosynthesis · ML-Driven Drug Discovery · Pharmaceutical Patent Intelligence
 **Dataset:** ChEMBL EGFR (CHEMBL203) · USPTO Open Reaction Dataset · EGFR Patent Literature
 
 ---
