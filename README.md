@@ -186,5 +186,8 @@ This suite is part of a broader cheminformatics project (Notebooks 01–10) cove
 - GNN-based reaction classification (NB05)
 
 ---
+---
+**Connect:** [linkedin.com/in/saleemabegam](https://linkedin.com/saleemabegam)
+
 
 *Built as part of ongoing research in computational retrosynthesis and ML-driven drug discovery.*
