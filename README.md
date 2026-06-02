@@ -6,7 +6,7 @@
 ![RDKit](https://img.shields.io/badge/RDKit-2023-green)
 ![Colab](https://img.shields.io/badge/Run%20on-Colab-yellow?logo=googlecolab)
 
-**Author:** Saleema Begam A — Cheminformatics Scientist 
+**Author:** Saleema Begam A — Cheminformatics Scientist
 
 **Domain:** Computational Retrosynthesis · ML-Driven Drug Discovery · Pharmaceutical Patent Intelligence
 
@@ -21,6 +21,7 @@ This project builds an end-to-end machine learning pipeline for retrosynthetic a
 The suite replicates and automates core workflows from pharmaceutical patent analysis — scaffold identification, synthetic route planning, reaction condition optimisation, and potency prediction — using modern ML architectures aligned with industry-standard tools (AiZynthFinder, ASKCOS, RDKit, PyTorch).
 
 ---
+
 ![EGFR Target Compounds](results/figures/egfr_target_compounds.png)
 
 ## Notebooks
@@ -45,41 +46,42 @@ Applies Monte Carlo Tree Search with a USPTO-trained neural network policy to de
 ### `08_graph_neural_network.ipynb` — GCN for pIC50 Prediction
 **Tools:** PyTorch Geometric · RDKit · ChEMBL API
 
-Implements a 3-layer Graph Convolutional Network (GCN) that operates directly on molecular graphs — encoding atoms as nodes and bonds as edges — to predict EGFR inhibitor potency (pIC50). Outperforms classical fingerprint-based models by capturing topological molecular structure.
+Implements a 3-layer Graph Convolutional Network (GCN) that operates directly on molecular graphs — encoding atoms as nodes and bonds as edges — to predict EGFR inhibitor potency (pIC50). Outperforms all classical fingerprint-based models by capturing topological molecular structure.
 
 - Molecule → graph conversion using RDKit atom/bond features
 - MolecularGCN: GCNConv → BatchNorm → Dropout → Global Mean Pool → MLP
 - 80/20 train-test split · Adam optimiser · StepLR scheduler · 60 epochs
-- Benchmark comparison: GCN vs Morgan FP baselines (SVR, ElasticNet, Ridge, PyTorch NN)
+- Benchmark comparison: GCN vs Morgan FP baselines (SVR, ElasticNet, Lasso, Ridge)
 
 ![GCN Training Results](results/figures/gcn_training_results.png)
 
-**Key output:** `results/metrics/gcn_model.pt` · `results/figures/gcn_training_results.png`
+**Key output:** `results/metrics/gcn_model.pt` · `results/metrics/gcn_model_comparison.csv`
 
 ---
 
-### `09_transformer_reaction_prediction.ipynb` — Transformer for Property Prediction
-**Tools:** PyTorch · SMILES tokenizer · ChEMBL API
+### `09_transformer_reaction_prediction.ipynb` — Transformer vs Classical ML
+**Tools:** PyTorch · SMILES tokenizer · scikit-learn · ChEMBL API
 
-Builds a character-level SMILES Transformer encoder for pIC50 regression. Multi-head self-attention captures long-range atom interactions that fingerprint and graph-convolution methods miss — directly analogous to production models in ChemBERTa and MolBERT.
+Benchmarks a character-level SMILES Transformer against Morgan fingerprint-based classical ML for pIC50 regression on ChEMBL EGFR data.
 
-- Character-level SMILES tokeniser with `<PAD>/<UNK>` handling
-- SMILESTransformer: Token embedding + positional encoding → 4-head attention (2 layers) → mean pooling → MLP
-- Correct padding mask computed from token ids (pre-embedding)
-- 60-epoch training with LR scheduling · R² and RMSE evaluation
+- SMILESTransformer: token embedding + positional encoding → 4-head attention (2 layers) → mean pooling → MLP
+- Gradient Boosting and Random Forest trained on 1024-bit Morgan fingerprints
+- Key finding: Transformer R²=−5.41 vs Gradient Boosting R²=0.721
+- Demonstrates when NOT to use deep learning — dataset size governs architecture choice
+- Directly analogous to ChemBERTa/MolBERT literature on data requirements
 
 ![Transformer Training Results](results/figures/transformer_training_results.png)
 
-**Key output:** `results/metrics/transformer_model.pt` · `results/figures/transformer_training_results.png`
+**Key output:** `results/metrics/transformer_model.pt` · `results/metrics/transformer_model_comparison.csv`
 
 ---
 
 ### `10_reaction_conditions_prediction.ipynb` — Yield & Condition Prediction
 **Tools:** RDKit · scikit-learn · Patent literature
 
-Predicts reaction yield and identifies optimal conditions for EGFR inhibitor synthesis reactions curated from 4 key patents. Encodes reaction type, solvent, temperature, catalyst, and Morgan fingerprint features into a unified feature matrix for ML regression.
+Predicts reaction yield and identifies optimal conditions for EGFR inhibitor synthesis reactions curated from 5 key patents. Encodes reaction type, solvent, temperature, catalyst, and Morgan fingerprint features into a unified feature matrix for ML regression.
 
-- 10 curated patent reactions: SNAr coupling, acylation, N/O-alkylation, Suzuki coupling
+- 30 curated patent reactions: SNAr coupling, acylation, N/O-alkylation, Suzuki coupling
 - Morgan fingerprint (64-bit) + 8 RDKit molecular descriptors + reaction-type one-hot encoding
 - 3 models compared: Random Forest · Gradient Boosting · Ridge Regression
 - Leave-One-Out CV (correct strategy for small pharmaceutical datasets)
@@ -87,8 +89,7 @@ Predicts reaction yield and identifies optimal conditions for EGFR inhibitor syn
 
 ![Reaction Conditions Analysis](results/figures/reaction_conditions_analysis.png)
 
-
-**Key output:** `results/metrics/yield_prediction_results.csv` · `results/figures/reaction_conditions_analysis.png`
+**Key output:** `results/metrics/yield_prediction_results.csv` · `results/metrics/egfr_patent_reactions.csv`
 
 ---
 
@@ -96,13 +97,15 @@ Predicts reaction yield and identifies optimal conditions for EGFR inhibitor syn
 
 | Model | Task | Metric |
 |---|---|---|
-| GCN (NB08) | pIC50 regression | R² reported after training |
-| Transformer (NB09) | pIC50 regression | R² reported after training |
-| Random Forest (NB10) | Yield prediction | LOO-CV R² |
-| Gradient Boosting (NB10) | Yield prediction | LOO-CV R² |
+| GCN (NB08) | pIC50 regression | R² = 0.731 |
+| Gradient Boosting — Morgan FP (NB09) | pIC50 regression | R² = 0.721 |
+| Random Forest — Morgan FP (NB09) | pIC50 regression | R² = 0.704 |
+| Transformer — SMILES (NB09) | pIC50 regression | R² = −5.412 (small dataset limitation) |
+| Gradient Boosting (NB10) | Yield prediction | LOO-CV RMSE = 3.87% |
+| Random Forest (NB10) | Yield prediction | LOO-CV RMSE = 4.52% |
 | AiZynthFinder (NB07) | Retrosynthesis | Routes found per compound |
 
-*Exact R² values are computed live during notebook execution on ChEMBL data.*
+*NB09 finding: SMILES Transformers require >10k compounds to learn effectively. Morgan FP + classical ML is the correct choice for ChEMBL EGFR (~800 compounds).*
 
 ---
 
@@ -173,7 +176,7 @@ reactionroute-ml-suite/
 All models are applied to **EGFR (Epidermal Growth Factor Receptor)** kinase inhibitors — a clinically validated oncology target with a rich patent landscape spanning three generations of drugs:
 
 - **1st gen:** Erlotinib, Gefitinib — reversible quinazoline inhibitors
-- **2nd gen:** Afatinib, Lapatinib — irreversible/dual HER inhibitors  
+- **2nd gen:** Afatinib, Lapatinib — irreversible/dual HER inhibitors
 - **3rd gen:** Osimertinib — mutant-selective, acrylamide covalent warhead
 
 This progression makes EGFR an ideal test case for Markush-aware retrosynthesis: each generation introduces distinct scaffold chemistry, new reaction types, and different synthetic accessibility challenges.
@@ -182,16 +185,14 @@ This progression makes EGFR an ideal test case for Markush-aware retrosynthesis:
 
 ## Related Work
 
-This suite is part of a broader cheminformatics project (Notebooks 01–10) covering:
-- Reaction data extraction from ChEMBL and USPTO (NB01)
-- Yield prediction with classical ML (NB02)
-- Retrosynthetic route scoring (NB03)
-- Markush structure and SAR analysis (NB04)
-- GNN-based reaction classification (NB05)
+This suite is part of a broader cheminformatics portfolio covering:
+- Retrosynthetic route prediction with MCTS (NB07)
+- GCN-based potency prediction (NB08)
+- Transformer vs classical ML benchmarking (NB09)
+- Reaction condition and yield optimisation (NB10)
 
 ---
----
-**Connect:** [linkedin.com/in/saleemabegam](https://linkedin.com/saleemabegam)
 
+**Connect:** [linkedin.com/in/saleemabegam](https://www.linkedin.com/in/saleemabegam)
 
 *Built as part of ongoing research in computational retrosynthesis and ML-driven drug discovery.*
