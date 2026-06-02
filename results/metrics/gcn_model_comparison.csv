@@ -1,6 +1,5 @@
 Model,Input,R2
-PyTorch NN,Morgan FP (1024-bit),0.81
-GCN (graph-based),Molecular Graph,0.766
+GCN (graph-based),Molecular Graph,0.731
 SVR,Morgan FP,0.691
 Lasso,Morgan FP,0.678
 ElasticNet,Morgan FP,0.647

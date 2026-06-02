@@ -1,0 +1,4 @@
+Model,Input,R2,RMSE
+Gradient Boosting (Morgan FP),Morgan FP 1024-bit,0.721,0.881
+Random Forest (Morgan FP),Morgan FP 1024-bit,0.704,0.907
+Transformer (SMILES),Character-level SMILES,-5.412,4.223
